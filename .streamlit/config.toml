@@ -1,0 +1,8 @@
+[server]
+# Listen only on this computer (no firewall prompt, nobody else on the network can use your API quota).
+address = "localhost"
+port = 8501
+
+[browser]
+# Do not send anonymous usage statistics to Streamlit.
+gatherUsageStats = false
