@@ -90,18 +90,12 @@ questions are logged.
 
 ## 5. Key tradeoffs
 
-- **Bulk snapshot vs live API**: BTS has no live API for this data. A local DuckDB snapshot is fast,
-  reproducible and testable. Live FAA status is used only as an optional extra and never in scores.
-- **Min-max vs percentile**: min-max keeps the real distances between airports and is easy to explain, but it
-  is sensitive to outliers. Percentile is already implemented (`method="percentile"`) as an alternative.
-- **YoY growth vs FAA TAF forecast**: actual growth is observed data and comes from the same source as the
-  other metrics. A forecast would look forward, but it would add another dataset and its own assumptions.
-- **Unmet demand as a proxy**: people who did not fly cannot be observed directly. The index combines signals
-  of excess demand and is presented as a relative index, not as a passenger count.
-- **National vs regional peer groups**: regional rankings answer "where in New England?", but those scores
-  cannot be compared across regions. Comparisons use the national group.
-- **Gemini free tier**: has a limited daily quota. The agent rotates through fallback models and
-  extra API keys, uses a light model for the topic check, and shows a clear message when every quota is used up.
+- **Local DuckDB snapshot vs live API**: BTS has no live API for this data. The snapshot is fast and reproducible, but not real-time. Live FAA status is an optional extra and never enters scores.
+- **Min-max vs percentile**: min-max keeps real distances and is easy to explain, but is sensitive to outliers. Percentile is implemented as an alternative.
+- **Observed YoY growth vs FAA TAF forecast**: same source as the other metrics, with no extra dataset or assumptions.
+- **Unmet demand is a proxy**: non-travelers cannot be observed, so it is a relative index, not a passenger count.
+- **National peer group**: regional rankings are not comparable across regions, so comparisons use the national group.
+- **Gemini free tier**: limited daily quota. The agent falls back to other models and keys and shows a clear message when all are used.
 
 ## 6. Assumptions & limitations
 
